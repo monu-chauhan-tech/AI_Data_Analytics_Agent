@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from data_engine import DataEngine
-from agent import AnalyticsAgent
+from agent_v2 import AnalyticsAgentV2
 
 app = Flask(__name__)
 
 DATA_FILE = "data/employees.csv"
 
 engine = DataEngine(DATA_FILE)
-agent = AnalyticsAgent(engine)
+agent = AnalyticsAgentV2(engine)
 
 
 @app.route("/")
