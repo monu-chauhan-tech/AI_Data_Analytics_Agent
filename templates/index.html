@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>AI Data Analytics Agent</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 AI Data Analytics Agent</h1>
+
+    <p class="subtitle">
+        Analyze and manage your data using natural language AI
+    </p>
+
+    <!-- AI AGENT -->
+
+    <div class="agent-panel">
+
+        <h2>🤖 AI Data Analytics Agent</h2>
+
+        <p>
+            Ask me anything about your dataset.
+        </p>
+
+        <div class="command-box">
+
+            <input
+                type="text"
+                id="commandInput"
+                placeholder="Example: What is the average salary?"
+            >
+
+            <button onclick="sendCommand()">
+                Ask Agent
+            </button>
+
+        </div>
+
+        <div class="examples">
+
+            <button onclick="useCommand('What is the average salary?')">
+                Average Salary
+            </button>
+
+            <button onclick="useCommand('Show IT employees')">
+                Show IT
+            </button>
+
+            <button onclick="useCommand('What is the highest salary?')">
+                Highest Salary
+            </button>
+
+            <button onclick="useCommand('Delete employee ID 5')">
+                Delete ID 5
+            </button>
+
+        </div>
+
+        <div id="agentResult">
+
+            Agent result will appear here...
+
+        </div>
+
+    </div>
+
+
+    <!-- DATA INFO -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Rows</h3>
+            <p id="rows">-</p>
+        </div>
+
+        <div class="card">
+            <h3>Columns</h3>
+            <p id="columns">-</p>
+        </div>
+
+        <div class="card">
+            <h3>Missing Values</h3>
+            <p id="missing">-</p>
+        </div>
+
+        <div class="card">
+            <h3>Duplicates</h3>
+            <p id="duplicates">-</p>
+        </div>
+
+    </div>
+
+
+    <!-- QUERY -->
+
+    <div class="panel">
+
+        <h2>🔎 Query Data</h2>
+
+        <input
+            id="searchColumn"
+            placeholder="Column e.g. Department">
+
+        <input
+            id="searchValue"
+            placeholder="Value e.g. IT">
+
+        <button onclick="searchData()">
+            Search
+        </button>
+
+    </div>
+
+
+    <!-- CALCULATION -->
+
+    <div class="panel">
+
+        <h2>🧮 Calculations</h2>
+
+        <select id="operation">
+
+            <option value="average">
+                Average
+            </option>
+
+            <option value="sum">
+                Sum
+            </option>
+
+            <option value="max">
+                Maximum
+            </option>
+
+            <option value="min">
+                Minimum
+            </option>
+
+        </select>
+
+        <input
+            id="calcColumn"
+            placeholder="Column e.g. Salary">
+
+        <button onclick="calculate()">
+            Calculate
+        </button>
+
+        <h3 id="result"></h3>
+
+    </div>
+
+
+    <!-- DATA TABLE -->
+
+    <div class="panel">
+
+        <h2>📊 Dataset</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    {% for column in columns %}
+
+                    <th>{{ column }}</th>
+
+                    {% endfor %}
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in data %}
+
+                <tr>
+
+                    {% for column in columns %}
+
+                    <td>{{ row[column] }}</td>
+
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+
+</html>
